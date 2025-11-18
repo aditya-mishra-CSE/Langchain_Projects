@@ -1,0 +1,9 @@
+# LangChain
+langchain
+
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+
+# Environment Variable Management
+python-dotenv
+streamlit
