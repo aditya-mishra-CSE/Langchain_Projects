@@ -14,21 +14,25 @@ load_dotenv()
 #     st.error("❌ GOOGLE_API_KEY is missing! Please set it in HuggingFace Space Secrets.")
 #     st.stop()
 
-# Function to generate blog using Gemini
+# ------------------------ BLOG GENERATION LOGIC ------------------------
+
 def generate_blog(topic, words, style):
+    """
+    Generates a blog using Google's Gemini model through LangChain.
+    """
 
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="gemini-2.0-flash",  # updated stable model
         temperature=0.4,
-        # api_key=api_key
+        # api_key = api_key
     )
 
     template = """
-    Write a professional blog post for the audience type: {style}
+    Write a professional blog post for this audience: {style}
     Topic: {topic}
     Blog Length: {words} words
-    
-    Make the blog engaging, easy to read, structured, and helpful.
+
+    Make the blog engaging, structured, clear, and helpful.
     """
 
     prompt = PromptTemplate(
@@ -46,12 +50,12 @@ def generate_blog(topic, words, style):
     return response.content
 
 
-# ---------------------- STREAMLIT UI ----------------------
+# ------------------------ STREAMLIT UI ------------------------
 
 st.set_page_config(page_title="Gemini Blog Generator", page_icon="📝")
 
 st.title("📝 Gemini Blog Generator")
-st.write("Generate high-quality blogs instantly using Google's Gemini AI.")
+st.write("Generate high-quality, structured blog posts using Google's Gemini AI.")
 
 topic = st.text_input("Enter Blog Topic")
 
@@ -72,10 +76,10 @@ if st.button("Generate Blog"):
     else:
         with st.spinner("Generating blog... ⏳"):
             blog = generate_blog(topic, words, style)
+
         st.success("✨ Blog Generated Successfully!")
         st.write(blog)
 
-        # Option to download the blog
         st.download_button(
             label="Download Blog as TXT",
             data=blog,
