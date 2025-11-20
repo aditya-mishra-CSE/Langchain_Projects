@@ -1,0 +1,12 @@
+streamlit==1.32.2
+# google-generativeai==0.5.4
+google-genai==0.4.0        
+
+python-dotenv==1.0.1
+
+langchain==0.2.15
+langchain-community==0.2.15
+langchain-core==0.2.37
+
+PyPDF2==3.0.1
+chromadb==0.5.0
