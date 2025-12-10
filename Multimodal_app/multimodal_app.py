@@ -5,8 +5,13 @@ from google.genai import types
 from PIL import Image
 from io import BytesIO
 from dotenv import load_dotenv
+from pyngrok import ngrok
 
 load_dotenv()
+
+NGROK_AUTHTOKEN = os.getenv("NGROK_AUTHTOKEN")
+public_url = ngrok.connect(8501).public_url
+print(f"Public url: {public_url}")
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
